@@ -35,10 +35,10 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-enable opcache
 
-ADD app/config/docker/php-apache/symfony.ini /usr/local/etc/php/conf.d/symfony.ini
-ADD app/config/docker/php-apache/www_werpflegtwie_de.crt /etc/apache2/ssl/www_werpflegtwie_de.crt
-ADD app/config/docker/php-apache/www_werpflegtwie_de.key /etc/apache2/ssl/www_werpflegtwie_de.key
-ADD app/config/docker/php-apache/vhost.conf /etc/apache2/sites-enabled/vhost.conf
+ADD php-apache/symfony.ini /usr/local/etc/php/conf.d/symfony.ini
+ADD php-apache/www_werpflegtwie_de.crt /etc/apache2/ssl/www_werpflegtwie_de.crt
+ADD php-apache/www_werpflegtwie_de.key /etc/apache2/ssl/www_werpflegtwie_de.key
+ADD php-apache/vhost.conf /etc/apache2/sites-enabled/vhost.conf
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
