@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:5.6-fpm
 
 RUN apt-get update && apt-get install -y \
         ant \
@@ -35,17 +35,9 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-enable opcache
 
-ADD php-apache/symfony.ini /usr/local/etc/php/conf.d/symfony.ini
-ADD php-apache/www_werpflegtwie_de.crt /etc/apache2/ssl/www_werpflegtwie_de.crt
-ADD php-apache/www_werpflegtwie_de.key /etc/apache2/ssl/www_werpflegtwie_de.key
-ADD php-apache/vhost.conf /etc/apache2/sites-enabled/vhost.conf
+ADD php/symfony.ini /usr/local/etc/php/conf.d/symfony.ini
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN mv composer.phar /usr/local/bin/composer
 
-RUN a2enmod rewrite
-RUN a2enmod ssl
-RUN a2enmod proxy
-RUN a2enmod proxy_http
-RUN a2enmod headers
