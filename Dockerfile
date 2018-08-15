@@ -40,4 +40,3 @@ ADD php/symfony.ini /usr/local/etc/php/conf.d/symfony.ini
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
 RUN mv composer.phar /usr/local/bin/composer
-
