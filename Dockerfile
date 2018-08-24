@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) intl \
     && docker-php-ext-install -j$(nproc) pdo \ 
     && docker-php-ext-install -j$(nproc) pdo_mysql \ 
-    && docker-php-ext-install -j$(nproc) exif
+    && docker-php-ext-install -j$(nproc) exif \
+    && docker-php-ext-install -j$(nproc) bcmath
 
 RUN apt-get update && apt-get install -y libmemcached-dev \
         libgomp1 \
