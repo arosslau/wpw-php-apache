@@ -29,8 +29,8 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
         libgomp1 \
         libmagickwand-dev \
         libmagickcore-dev \
-        libmagickcore-6.q16-2 \
-        libmagickwand-6.q16-2 \
+        libmagickcore-6.q16-3 \
+        libmagickwand-6.q16-3 \
     && pecl install memcached-2.2.0 \
     && pecl install imagick \
     && pecl install xdebug \
