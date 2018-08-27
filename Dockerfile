@@ -32,8 +32,8 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
         libmagickcore-6.q16-3 \
         libmagickwand-6.q16-3 \
     && pecl install memcached-2.2.0 \
-    && pecl install imagick \
-    && pecl install xdebug \
+    && pecl install imagick-3.4.3 \
+    && pecl install xdebug-2.5.5 \
     && docker-php-ext-enable memcached \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable xdebug \
