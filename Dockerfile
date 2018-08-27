@@ -1,7 +1,8 @@
 FROM php:5.6-fpm
 
-RUN apt-get update && apt-get install -y \
-        openjdk-7-jre-headless \
+RUN mkdir -p /usr/share/man/man1 \
+    && apt-get update \
+    && apt-get install -y \
         ant \
         vim \
         git
