@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-enable opcache
 
-ADD php/symfony.ini /usr/local/etc/php/conf.d/symfony.ini
+ADD rootfs/ /
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
