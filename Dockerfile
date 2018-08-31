@@ -1,7 +1,8 @@
 FROM php:5.6-fpm
 
-RUN apt-get update && apt-get install -y \
-        openjdk-7-jre-headless \
+RUN mkdir -p /usr/share/man/man1 \
+    && apt-get update \
+    && apt-get install -y \
         ant \
         vim \
         git
@@ -10,8 +11,8 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
-        libmysqlclient18 \
+        libpng-dev \
+        libmariadbclient18 \
         libicu-dev \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -28,17 +29,17 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
         libgomp1 \
         libmagickwand-dev \
         libmagickcore-dev \
-        libmagickcore-6.q16-2 \
-        libmagickwand-6.q16-2 \
+        libmagickcore-6.q16-3 \
+        libmagickwand-6.q16-3 \
     && pecl install memcached-2.2.0 \
-    && pecl install imagick \
-    && pecl install xdebug \
+    && pecl install imagick-3.4.3 \
+    && pecl install xdebug-2.5.5 \
     && docker-php-ext-enable memcached \
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-enable opcache
 
-ADD php/symfony.ini /usr/local/etc/php/conf.d/symfony.ini
+ADD rootfs/ /
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
