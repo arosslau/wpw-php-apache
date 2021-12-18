@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-stretch
+FROM php:7.3-fpm-stretch
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y \
     && echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list \
@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
         libpng-dev \
         default-libmysqlclient-dev \
         libicu-dev \
+        libzip-dev \
     && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
@@ -31,7 +32,7 @@ RUN apt-get update && apt-get install -y libmemcached-dev \
         libgomp1 \
         libmagickwand-dev \
         libmagickcore-dev \
-    && pecl install memcached-3.0.4 \
+    && pecl install memcached-3.1.3 \
     && pecl install imagick \
     && pecl install xdebug \
     && docker-php-ext-enable memcached \
